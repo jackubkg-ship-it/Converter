@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>İLKİN SERVİS → Avto 326 · Конвертер</title>
+<style>
+  :root{
+    --bg:#0f172a; --card:#1e293b; --accent:#38bdf8; --accent2:#0ea5e9;
+    --text:#e2e8f0; --muted:#94a3b8; --border:#334155; --ok:#22c55e;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; min-height:100vh; font-family:'Segoe UI',system-ui,sans-serif;
+    background:radial-gradient(circle at 20% 0%, #1e3a8a22, transparent 50%),
+               radial-gradient(circle at 80% 100%, #0ea5e922, transparent 50%),
+               var(--bg);
+    color:var(--text); display:flex; align-items:center; justify-content:center;
+    padding:24px;
+  }
+  .wrap{width:100%; max-width:760px}
+  h1{font-size:1.6rem; margin:0 0 6px}
+  h1 span{color:var(--accent)}
+  .sub{color:var(--muted); font-size:.92rem; margin-bottom:24px; line-height:1.5}
+  .card{background:var(--card); border:1px solid var(--border); border-radius:16px;
+        padding:26px; box-shadow:0 20px 50px #0006}
+  .filebox{
+    border:2px dashed var(--border); border-radius:14px; padding:32px 20px;
+    text-align:center; background:#0f172a55; margin-bottom:20px;
+  }
+  .filebox input[type=file]{display:none}
+  .filebox label{
+    display:inline-block; padding:12px 22px; border-radius:10px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    color:#06263a; font-weight:600; cursor:pointer; transition:.2s;
+  }
+  .filebox label:hover{filter:brightness(1.1)}
+  .filebox .hint{color:var(--muted); font-size:.85rem; margin-top:10px}
+  .fname{color:var(--ok); font-weight:600; margin-top:8px; word-break:break-all}
+  .opts{margin:0 0 20px; display:flex; flex-direction:column; gap:10px}
+  label.opt{display:flex; align-items:center; gap:9px; font-size:.9rem; color:var(--muted); cursor:pointer}
+  input[type=checkbox]{width:16px; height:16px; accent-color:var(--accent); cursor:pointer}
+  button{
+    width:100%; padding:14px; border:0; border-radius:12px; font-size:1rem; font-weight:600;
+    background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#06263a;
+    cursor:pointer; transition:.2s;
+  }
+  button:hover{filter:brightness(1.1)}
+  details{margin-top:22px; font-size:.85rem; color:var(--muted)}
+  details summary{cursor:pointer; color:var(--accent); font-weight:600}
+  details ul{margin:8px 0 0; padding-left:20px; line-height:1.7}
+  code{background:#0f172a; padding:2px 6px; border-radius:5px; color:#7dd3fc}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>İLKİN SERVİS <span>→</span> Avto 326</h1>
+  <div class="sub">
+    Загрузите файл <b>«İLKİN SERVİCE-SOL — Ümumi iş Cədvəli»</b>.
+    Сервис соберёт отчёт в формате <b>Avto 326</b>.
+  </div>
+
+  <div class="card">
+    <form method="POST" action="/convert" enctype="multipart/form-data">
+      <div class="filebox">
+        <input type="file" id="file" name="file" accept=".xlsx,.xlsm" required
+               onchange="document.getElementById('fname').textContent = this.files[0].name">
+        <label for="file">Выбрать файл .xlsx</label>
+        <div class="hint">Поддерживаются .xlsx и .xlsm</div>
+        <div class="fname" id="fname"></div>
+      </div>
+
+      <div class="opts">
+        <label class="opt">
+          <input type="checkbox" name="totals" value="1" checked>
+          Добавлять строку «Cəmi» в конце листов
+        </label>
+      </div>
+
+      <button type="submit">Конвертировать и скачать</button>
+    </form>
+
+    <details>
+      <summary>Как работает преобразование</summary>
+      <ul>
+        <li>Лист <b>Avqust 2026</b> — все запчасти, работы, масла</li>
+        <li>Лист <b>Akumlyator</b> — только аккумуляторы</li>
+        <li>Строки «0.15» и «0.2» идут в отдельные колонки</li>
+        <li>Если у «0.2» нет даты — привязка к последней записи того же ТС</li>
+      </ul>
+    </details>
+  </div>
+</div>
+</body>
+</html>
